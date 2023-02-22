@@ -24,7 +24,7 @@ export const NavBar = () => {
               Patient List
             </NavDropdown.Item>
             <NavDropdown.Item onClick={() => navigate(CREATE_PATIENT)}>
-                Create Patient
+              Create Patient
             </NavDropdown.Item>
           </NavDropdown>
           <Nav>
