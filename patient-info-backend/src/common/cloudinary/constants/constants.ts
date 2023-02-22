@@ -1,0 +1,1 @@
+export const ValidImageFormat = ['.jpg', '.jpeg', '.png'];
