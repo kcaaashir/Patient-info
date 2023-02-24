@@ -20,15 +20,18 @@ export class UserService {
 
     async createUser(createUserDto: CreateUserDto) {
         try {
+            console.log("1")
             this.logger.log('CreateUser: Start session and transaction');
             const session = await this.userModel.db.startSession();
             session.startTransaction();
             try {
                 this.logger.log('CreateUser: Create new model user');
+                console.log("1")
                 const newUser = new this.userModel({
                     ...createUserDto,
                 });
                 this.logger.log('CreateUser: Generate hashed password');
+                console.log("2")
                 const hashedPassword = await this.authService.hashPasswordWithSalt(
                     createUserDto.password,
                 );
