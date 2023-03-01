@@ -12,7 +12,7 @@ export class UserService {
 
     constructor(
         @InjectModel('User')
-        private readonly userModel: Model<User>,
+        public readonly userModel: Model<User>,
         private authService: AuthService,
     ) {
         this.logger = new Logger(UserService.name);
