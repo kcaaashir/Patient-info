@@ -10,6 +10,9 @@
  
  <img width="1327" alt="Screenshot 2023-03-02 at 14 47 10" src="https://user-images.githubusercontent.com/36202383/222381704-d4211e88-3962-4673-848e-6861c50724c6.png">
 <img width="636" alt="Screenshot 2023-03-02 at 14 47 36" src="https://user-images.githubusercontent.com/36202383/222381738-73eec3df-69d4-4fdd-b793-e466ec0fff5c.png">
+<img width="596" alt="Screenshot 2023-03-02 at 15 08 48" src="https://user-images.githubusercontent.com/36202383/222387601-c3280d14-aff5-4030-b134-276872555c3b.png">
+<img width="1345" alt="Screenshot 2023-03-02 at 15 09 29" src="https://user-images.githubusercontent.com/36202383/222387610-afcfac62-77ce-4d78-93d7-94f619685497.png">
+
 
   Setup process:
 
