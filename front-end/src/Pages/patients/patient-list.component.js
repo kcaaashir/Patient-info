@@ -11,7 +11,6 @@ const PatientList = () => {
 
   useEffect(() => {
     const headers = getHeaders();
-    console.log('heade', headers)
     axios
       .get(`${API_URL}/patient`, headers)
       .then(({ data }) => {
