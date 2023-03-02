@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import { PATIENT_LIST, REGISTER } from "../../Constants/Routes";
+import { API_URL } from "../../config/config";
 
 const Login = (props) => {
   const [formValues] = useState({
@@ -25,7 +26,7 @@ const Login = (props) => {
 
   const onSubmit = (userObject) => {
     axios
-      .post("http://localhost:3000/user/signin", userObject)
+      .post(`${API_URL}/user/signin`, userObject)
       .then((response) => {
         if (response.status === 201) {
           const token = response.data["token"];

@@ -1,13 +1,11 @@
-import { Gender } from "../enums/gender.enum";
-
 export interface Patient {
     fullname: string;
     email: string;
     phoneNo: number;
     dateOfBirth: string;
     address: string;
-    gender: Gender;
+    gender?: string;
     specialAttention: boolean;
-    file: string;
-    publicId: string;
+    file?: string;
+    publicId?: string;
 }

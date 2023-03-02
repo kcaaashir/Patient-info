@@ -37,7 +37,7 @@ export class CreatePatientDto {
     @ApiProperty()
     @IsOptional()
     @IsBoolean()
-    readonly specialAttention?: string
+    readonly specialAttention: boolean
 
     @ApiProperty()
     @IsOptional()

@@ -18,7 +18,6 @@ const PatientForm = (props) => {
     specialAttention: Yup.boolean().required("Required"),
     file: Yup.mixed().optional(),
   });
-  console.log(props);
   return (
     <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema} >
@@ -121,9 +120,7 @@ const PatientForm = (props) => {
               </Form>
             </>
           )
-
         }}
-
       </Formik>
     </div>
   );

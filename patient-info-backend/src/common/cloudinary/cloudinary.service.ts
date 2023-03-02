@@ -3,7 +3,6 @@ import { v2 } from 'cloudinary';
 import toStream = require('buffer-to-stream');
 import { imageResponse } from './interface/image-response-interface';
 @Injectable()
-
 export class CloudinaryService {
     async uploadImage(
         file: Express.Multer.File,

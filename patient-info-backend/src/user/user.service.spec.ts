@@ -130,16 +130,32 @@ describe('UserService', () => {
     });
 
     it("should throw error if user is not found", async () => {
-      const error = new Error('Incorrect email or password');
+      const error = new Error('Email or username does not exists');
       jest.spyOn(UserModel, 'findOne').mockRejectedValueOnce(error);
 
       try {
         await service.logInUser(createUserDto);
       } catch (e) {
         expect(e).toBeInstanceOf(HttpException);
+        expect(e.message).toEqual('Email or username does not exists');
+        expect(e.status).toEqual(HttpStatus.BAD_REQUEST);
+      }
+    });
+
+    it("should throw error if password is not correct", async () => {
+      const error = new Error('Incorrect email or password');
+      const findOne = jest.spyOn(UserModel, 'findOne').mockResolvedValue(savedUser);
+      jest.spyOn(authService, 'comparePassword').mockRejectedValueOnce(error);
+
+      try {
+        await service.logInUser(createUserDto);
+      } catch (e) {
+        expect(findOne).toBeCalled();
+        expect(e).toBeInstanceOf(HttpException);
         expect(e.message).toEqual('Incorrect email or password');
         expect(e.status).toEqual(HttpStatus.BAD_REQUEST);
       }
     })
+
   })
 });

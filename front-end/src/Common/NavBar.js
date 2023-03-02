@@ -1,15 +1,10 @@
 import React from "react";
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-
 import { CREATE_PATIENT, PATIENT_LIST, SIGN_OUT } from ".././Constants/Routes";
 
-
-
 export const NavBar = () => {
-
   const navigate = useNavigate();
-
   return (
     <Navbar bg="primary" variant="dark">
       <Container>

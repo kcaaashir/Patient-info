@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../../Constants/Routes";
+import { API_URL } from "../../config/config";
 
 const Register = (props) => {
   const [formValues] = useState({
@@ -21,7 +22,7 @@ const Register = (props) => {
 
   const onSubmit = (userObject) => {
     axios
-      .post("http://localhost:3000/user/signup", userObject)
+      .post(`${API_URL}/user/signup`, userObject)
       .then((response) => {
         if (response.status === 201) {
           navigate(LOGIN);

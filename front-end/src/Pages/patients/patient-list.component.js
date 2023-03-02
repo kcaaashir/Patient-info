@@ -3,20 +3,17 @@ import axios from "axios";
 import { Button, Col, Row, Table } from "react-bootstrap";
 import PatientTableRow from "../../Components/PatientTableRow";
 import { NavBar } from "../../Common/NavBar";
+import { getHeaders, headers } from "../../config/auth";
+import { API_URL } from "../../config/config";
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const headers = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+    const headers = getHeaders();
+    console.log('heade', headers)
     axios
-      .get("http://localhost:3000/patient", headers)
+      .get(`${API_URL}/patient`, headers)
       .then(({ data }) => {
         setPatients(data.data);
       })
@@ -34,7 +31,7 @@ const PatientList = () => {
       },
     };
     axios
-    .get(`http://localhost:3000/patient?fullname=${e.target.value}`, headers)
+    .get(`${API_URL}/patient?fullname=${e.target.value}`, headers)
     .then(({ data }) => {
       setPatients(data.data);
     })

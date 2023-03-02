@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Parser } from 'html-to-react'
+import { getHeaders } from "../config/auth";
+import { API_URL } from "../config/config";
 
 const PatientTableRow = (props) => {
   const {
@@ -17,29 +19,23 @@ const PatientTableRow = (props) => {
     address
   } = props.obj;
 
-  const token = localStorage.getItem("token");
-  const headers = {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  }
+  const headers = getHeaders()
 
   const makeSpecialAttention = () => {
     axios
-    .put("http://localhost:3000/patient/specialAttention/" + _id, headers)
-    .then((res) => {
-      if (res.status === 200) {
-        alert("Patient successfully made special attention");
-        window.location.reload();
-      } else Promise.reject();
-    })
-    .catch((err) => alert("Something went wrong"));
+      .put(`${API_URL}/patient/specialAttention/` + _id, {}, headers)
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Patient successfully made special attention");
+          window.location.reload();
+        } else Promise.reject();
+      })
+      .catch((err) => alert("Something went wrong"));
   }
 
   const deletePatient = () => {
     axios
-      .delete("http://localhost:3000/patient/" + _id, headers)
+      .delete(`${API_URL}/patient/` + _id, headers)
       .then((res) => {
         if (res.status === 200) {
           alert("Patient successfully deleted");

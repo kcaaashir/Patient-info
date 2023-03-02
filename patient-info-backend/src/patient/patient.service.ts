@@ -28,7 +28,6 @@ export class PatientService {
             try {
                 this.logger.log('CreatePatient: Create new model patient');
                 const result = await this.cloudinaryService.uploadImage(file);
-                console.log(result);
                 const newPatient = new this.patientModel({
                     ...createPatientDto,
                 });
@@ -82,8 +81,7 @@ export class PatientService {
                             specialAttention: true
                         },
                         { new: true },
-                    )
-                    .exec();
+                    );
                 return updatePatient;
             } catch (error) {
                 this.logger.error(`UpdatePatient: abort transaction`);
@@ -144,8 +142,7 @@ export class PatientService {
                             ...updatePatientDto,
                         },
                         { new: true },
-                    )
-                    .exec();
+                    );
                 return updatePatient;
             } catch (error) {
                 this.logger.error(`UpdatePatient: abort transaction`);
@@ -170,7 +167,7 @@ export class PatientService {
     }
 
     async findOne(id: string) {
-        const patient = this.patientModel.findById(id).exec();
+        const patient = this.patientModel.findById(id);
         if (!patient) {
             throw new NotFoundException(`Patient is not found`);
         }
@@ -185,7 +182,7 @@ export class PatientService {
             throw new NotFoundException('cannot find the patient');
         }
         await this.cloudinaryService.deleteImage(patient.publicId);
-        return patient.remove();
+        return await patient.remove();
     }
 
     async findAll(patientQueryDto: PatientQueryDto) {
@@ -199,8 +196,7 @@ export class PatientService {
             .find(dataQuery)
             .sort({ specialAttention: -1, fullname: 1 })
             .skip(offset)
-            .limit(limit)
-            .exec();
+            .limit(limit);
 
         return patient;
     }

@@ -1,16 +1,16 @@
-import { 
-    Body, 
-    Controller, 
-    HttpException, 
-    HttpStatus, 
-    Logger, 
+import {
+    Body,
+    Controller,
+    HttpException,
+    HttpStatus,
+    Logger,
     Post
 } from '@nestjs/common';
-import { 
+import {
     ApiTags,
     ApiCreatedResponse,
     ApiNotFoundResponse,
- } from '@nestjs/swagger';
+} from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LogInUserDto } from './dto/login-user.dto';
 import { UserService } from './user.service';
@@ -23,8 +23,8 @@ export class UserController {
 
     constructor(
         private readonly userService: UserService
-    ){
-        this.logger = new Logger(UserController.name); 
+    ) {
+        this.logger = new Logger(UserController.name);
     }
 
 
@@ -34,18 +34,18 @@ export class UserController {
     })
     @ApiNotFoundResponse({
         description: 'user not found',
-      })
+    })
     async signIn(
         @Body() createUserDto: CreateUserDto,
     ) {
-        try{
+        try {
             const user = await this.userService.createUser(createUserDto);
             return {
                 status: HttpStatus.CREATED,
                 message: 'A user has been created successfully',
                 data: user,
             }
-        }catch(err){
+        } catch (err) {
             throw new HttpException({ message: err.message }, HttpStatus.BAD_REQUEST);
         }
     }
@@ -56,20 +56,19 @@ export class UserController {
     })
     @ApiNotFoundResponse({
         description: 'user not found',
-      })
+    })
     async login(
         @Body() logInUserDto: LogInUserDto,
-    ){
-        try{
+    ) {
+        try {
             const userLoggedIn = await this.userService.logInUser(logInUserDto);
             return {
                 status: HttpStatus.CREATED,
                 message: 'User has been loggedIn successfully',
                 token: userLoggedIn,
             }
-        }catch(err){
-            throw new HttpException({ status:HttpStatus.BAD_REQUEST ,message: err.message }, HttpStatus.BAD_REQUEST);
+        } catch (err) {
+            throw new HttpException({ status: HttpStatus.BAD_REQUEST, message: err.message }, HttpStatus.BAD_REQUEST);
         }
     }
-
 }

@@ -1,22 +1,14 @@
-// EditPatient Component for update patient data
-
-// Import Modules
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PatientForm from "../../Components/PatientForm";
 import { useParams } from "react-router-dom";
 import { NavBar } from "../../Common/NavBar";
 import { convertToFormData } from "../../utils/convertFormData";
+import { getHeaders } from "../../config/auth";
+import { API_URL } from "../../config/config";
 
-const token = localStorage.getItem("token");
-const headers = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "multipart/form-data",
-  },
-};
 
-// EditPatient Component
+
 const EditPatient = (props) => {
   const routeParams = useParams();
 
@@ -31,12 +23,14 @@ const EditPatient = (props) => {
     file: ""
   });
 
+  const headers = getHeaders()
+
   //onSubmit handler
   const onSubmit = (patientObject) => {
     const data = convertToFormData(patientObject);
     axios
       .put(
-        "http://localhost:3000/patient/" + routeParams.id,
+        `${API_URL}/patient/` + routeParams.id,
         data,
         headers
       )
@@ -53,7 +47,7 @@ const EditPatient = (props) => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:3000/patient/" + routeParams.id,
+        `${API_URL}/patient/` + routeParams.id,
         headers
       )
       .then((res) => {

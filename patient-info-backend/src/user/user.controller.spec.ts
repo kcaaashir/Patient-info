@@ -86,7 +86,7 @@ fdescribe('UserController', () => {
       const token = 'testtoken';
       jest.spyOn(service, 'logInUser').mockResolvedValue(token);
 
-    
+
       const result = await controller.login(logInUserDto);
 
       expect(result).toEqual({

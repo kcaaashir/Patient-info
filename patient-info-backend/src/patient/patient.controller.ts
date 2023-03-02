@@ -16,8 +16,8 @@ export class PatientController {
     constructor(
         private readonly patientService: PatientService
     ) { }
-// 
-    // @UseGuards(JwtAuthGuard)
+
+    @UseGuards(JwtAuthGuard)
     @Post('create')
     @ApiCreatedResponse({
         description: 'Patient has been created sucessfully',
@@ -159,10 +159,7 @@ export class PatientController {
                 data: patients,
             };
         } catch (err) {
-            return {
-                status: HttpStatus.BAD_REQUEST,
-                message: err.message,
-            };
+            throw new HttpException({ message: err.message }, HttpStatus.BAD_REQUEST);
         }
     }
 }

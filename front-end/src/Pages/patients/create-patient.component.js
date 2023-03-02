@@ -1,11 +1,10 @@
-// CreatePatient Component for add new patient
-
-// Import Modules
 import React, { useState } from "react";
 import axios from "axios";
 import PatientForm from "../../Components/PatientForm";
 import { NavBar } from "../../Common/NavBar";
 import { convertToFormData } from "../../utils/convertFormData";
+import { getHeaders, multiPartHeaders } from "../../config/auth";
+import { API_URL } from "../../config/config";
 
 //CreatePatient Component
 const CreatePatient = () => {
@@ -20,22 +19,13 @@ const CreatePatient = () => {
     file: ""
   });
 
-  const token = localStorage.getItem("token");
-  if (token === null) {
-    alert("No Token!");
-  }
-  const headers = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    },
-  };
 
   const onSubmit = (patientObject) => {
+    const headers = getHeaders(false);
     const data = convertToFormData(patientObject)
     axios
       .post(
-        "http://localhost:3000/patient/create/",
+        `${API_URL}/patient/create/`,
         data,
         headers
       )
