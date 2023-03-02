@@ -28,7 +28,7 @@
       8. for frontend
       9. npm i
       10. npm start
-      11. for test case: npm run test
+      11. for test case: npm run test src/test/
       
     Postman Collection:
 
