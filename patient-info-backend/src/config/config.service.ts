@@ -16,9 +16,7 @@ export class ConfigService {
     return {
       uri: this.get('DATABASE_URL'),
       useNewUrlParser: true,
-      // useCreateIndex: true,
       useUnifiedTopology: true,
-      // useFindAndModify: false,
     };
   }
 
