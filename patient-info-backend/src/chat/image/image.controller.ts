@@ -14,7 +14,7 @@ import { ImageService } from './image.service';
 export class ImageController {
   constructor(private readonly uploadImageService: ImageService) {}
 
-  @Post('')
+  @Post()
   @UseInterceptors(FileInterceptor('image', { limits: { files: 1 } }))
   @ApiResponse({ status: HttpStatus.CREATED })
   async upload(@UploadedFile() file: Express.Multer.File, @Res() response) {
