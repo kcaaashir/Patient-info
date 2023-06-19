@@ -27,6 +27,7 @@
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.4",
+    "aws-sdk": "^2.1398.0",
     "bcrypt": "^5.1.0",
     "buffer-to-stream": "^1.0.0",
     "class-validator": "^0.14.0",
@@ -75,7 +76,9 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "modulePaths": ["<rootDir>"],
+    "modulePaths": [
+      "<rootDir>"
+    ],
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
