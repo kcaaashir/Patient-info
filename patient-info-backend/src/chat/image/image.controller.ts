@@ -27,7 +27,7 @@ export class ImageController {
     } catch (error) {
       return response
         .status(500)
-        .json(`Failed to upload image to S3: ${error.message}`);
+        .json({ message: `Failed to upload image to S3: ${error.message}` });
     }
   }
 }
